@@ -1,5 +1,5 @@
 <!-- ### Hi there 👋 -->
-[![Discord Presence](https://lanyard.cnrad.dev/api/277361757310287872)](https://discord.com/users/277361757310287872)
+[![Discord Presence](https://lanyard.cnrad.dev/api/277361757310287872?idleMessage=:yourmessage)](https://discord.com/users/277361757310287872)
 <!--
 **hasankayra04/hasankayra04** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
