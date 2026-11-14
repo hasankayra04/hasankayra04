@@ -66,3 +66,29 @@ jobs:
           git remote add codeberg "https://${CODEBERG_PAT}@codeberg.org/${CB_NAMESPACE}/${REPO_NAME}.git"
           git push codeberg --all --force
           git push codeberg --tags --force
+
+  # =====================================================================
+  # PART 3: MIRROR TO GITEA
+  # [REMOVE THIS JOB ENTIRELY IF YOU DO NOT WANT GITEA MIRRORING]
+  # =====================================================================
+  mirror-gitea:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with full history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Push to Gitea
+        env:
+          GITEA_USERNAME: ${{ secrets.GITEA_USERNAME }}
+          GITEA_PAT: ${{ secrets.GITEA_PAT }}
+        run: |
+          GH_OWNER="${{ github.repository_owner }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+
+          echo "Targeting Gitea namespace: https://gitea.com/$GH_OWNER/$REPO_NAME"
+
+          git remote add gitea "https://${GITEA_USERNAME}:${GITEA_PAT}@gitea.com/${GH_OWNER}/${REPO_NAME}.git"
+          git push gitea --all --force
+          git push gitea --tags --force
